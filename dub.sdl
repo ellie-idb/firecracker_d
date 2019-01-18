@@ -1,8 +1,8 @@
 name "firecracker_d"
 description "An API client for Amazon's Firecracker microVM application."
 authors "Harrison Ford"
-copyright "wtfpl"
-license "proprietary"
+copyright "no copyright ever"
+license "WTFPL"
 dependency "requests" version="~>1.0.5"
 dependency "jsonizer" version="~>0.7.6"
 configuration "library" {
