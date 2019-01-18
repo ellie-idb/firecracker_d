@@ -27,6 +27,11 @@ struct InstanceInfo {
 	***/
 	@jsonize("state", Jsonize.opt) InstanceState state;
 
+	/***
+	  Get the microVM's state via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/");
 

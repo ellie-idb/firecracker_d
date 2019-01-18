@@ -27,6 +27,12 @@ struct InstanceActionInfo {
 	@jsonize("payload", Jsonize.opt) string payload;
 	
 
+
+	/***
+	  Execute the action via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/actions", this.toString);
 

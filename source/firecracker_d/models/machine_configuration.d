@@ -27,6 +27,12 @@ struct MachineConfiguration {
 	***/
 	@jsonize("vcpu_count", Jsonize.opt) long vcpuCount;
 
+	/***
+	  Modify the microVM's configuration via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
+
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/machine-config", this.toString);
 
@@ -38,6 +44,12 @@ struct MachineConfiguration {
 			return false;
 		}
 	}
+
+	/***
+	  Get the microVM's config via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/machine-config");

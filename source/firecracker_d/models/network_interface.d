@@ -43,6 +43,12 @@ struct NetworkInterface {
 	***/
 	@jsonize("state", Jsonize.opt) string state;
 
+	/***
+	  Create the network interface via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
+
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/network-interfaces/" ~ ifaceID, this.toString);
 

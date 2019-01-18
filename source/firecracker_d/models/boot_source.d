@@ -16,6 +16,11 @@ struct BootSource {
 	***/
 	@jsonize("kernel_image_path", Jsonize.yes) string kernelImagePath;
 
+	/***
+	  Create the boot source via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/boot-source", this.toString);
 		

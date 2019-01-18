@@ -37,6 +37,11 @@ struct Drive {
 	***/
 	@jsonize("rate_limiter", Jsonize.opt) RateLimiter rateLimiter; 
 
+	/***
+	  Create the drive via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/drives/" ~ driveID, this.toString);
 
@@ -50,6 +55,11 @@ struct Drive {
 			
 	}
 
+	/***
+	  Modify the drive via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.patch("/drives/" ~ driveID, this.toString);
 		if(r.code == 204) {

@@ -12,8 +12,6 @@ struct Vsock {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
-	
-
 	/***
 	* The guest's Context Identifier
 	***/
@@ -24,6 +22,11 @@ struct Vsock {
 	***/
 	@jsonize("id", Jsonize.yes) string id;
 
+	/***
+	  Create the Vsock via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/vsocks/" ~ id, this.toString);
 

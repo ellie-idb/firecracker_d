@@ -54,6 +54,12 @@ struct Logger {
 	***/
 	@jsonize("show_log_origin", Jsonize.opt) bool showLogOrigin;
 
+	/***
+	  Create the logger via the Firecracker API
+
+	  Throws a FirecrackerException if failed.
+	***/
+
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/logger", this.toString);
 		if(r.code == 204) {
