@@ -1,7 +1,7 @@
-module core.client;
+module firecracker_d.core.client;
 import requests;
-import models.client_models;
-import core.transport;
+import firecracker_d.models.client_models;
+import firecracker_d.core.transport;
 import std.json;
 import jsonizer;
 

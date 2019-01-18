@@ -1,6 +1,6 @@
-module models.vsock;
+module firecracker_d.models.vsock;
 import jsonizer;
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct Vsock {
 	mixin JsonizeMe;

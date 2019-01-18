@@ -1,7 +1,7 @@
-module models.rate_limiter;
+module firecracker_d.models.rate_limiter;
 import jsonizer;
-import models.token_bucket;
-import models.base_model;
+import firecracker_d.models.token_bucket;
+import firecracker_d.models.base_model;
 
 struct RateLimiter {
 	mixin JsonizeMe;

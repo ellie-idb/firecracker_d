@@ -1,4 +1,4 @@
-module models.logger;
+module firecracker_d.models.logger;
 import jsonizer;
 
 enum LoggerLevel : string {
@@ -7,7 +7,7 @@ enum LoggerLevel : string {
 		Info = "Info",
 		Debug = "Debug"
 }
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct Logger {
 	mixin JsonizeMe;

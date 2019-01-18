@@ -1,6 +1,6 @@
-module models.instance_info;
+module firecracker_d.models.instance_info;
 import jsonizer;
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct InstanceInfo {
 	mixin JsonizeMe;

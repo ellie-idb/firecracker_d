@@ -1,6 +1,6 @@
-module models.network_interface;
-import models.base_model;
-import models.rate_limiter;
+module firecracker_d.models.network_interface;
+import firecracker_d.models.base_model;
+import firecracker_d.models.rate_limiter;
 
 struct NetworkInterface {
 	mixin JsonizeMe;

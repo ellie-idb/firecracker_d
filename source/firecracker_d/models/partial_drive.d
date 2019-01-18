@@ -1,6 +1,6 @@
-module models.partial_drive;
+module firecracker_d.models.partial_drive;
 import jsonizer;
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct PartialDrive {
 	mixin JsonizeMe;

@@ -1,4 +1,4 @@
-module core.transport;
+module firecracker_d.core.transport;
 import std.stdio;
 import requests;
 import std.socket;
@@ -152,7 +152,6 @@ class UnixStream : NetworkStream {
     }
 
     NetworkStream dg(string scheme, string host, ushort port) {
-	    writefln("called with %s as host, %d as port", host, port);
 	    UnixStream f = new UnixStream();
 	    f.connect(_facSocket, 0);
 	    return cast(NetworkStream)f;

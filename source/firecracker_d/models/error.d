@@ -1,6 +1,6 @@
-module models.error;
+module firecracker_d.models.error;
 import jsonizer;
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct FirecrackerError {
 	mixin JsonizeMe;

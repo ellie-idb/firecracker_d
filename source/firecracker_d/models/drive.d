@@ -1,6 +1,6 @@
-module models.drive;
-import models.rate_limiter;
-import models.base_model;
+module firecracker_d.models.drive;
+import firecracker_d.models.rate_limiter;
+import firecracker_d.models.base_model;
 
 struct Drive {
 	mixin JsonizeMe;

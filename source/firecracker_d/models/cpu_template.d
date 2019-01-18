@@ -1,4 +1,4 @@
-module models.cpu_template;
+module firecracker_d.models.cpu_template;
 import jsonizer;
 
 enum CPUTemplate : string {

@@ -1,7 +1,7 @@
-module models.machine_configuration;
+module firecracker_d.models.machine_configuration;
 import jsonizer;
-import models.cpu_template;
-import models.base_model;
+import firecracker_d.models.cpu_template;
+import firecracker_d.models.base_model;
 
 struct MachineConfiguration {
 	mixin JsonizeMe;

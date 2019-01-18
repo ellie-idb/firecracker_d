@@ -1,4 +1,4 @@
-module models.instance_action_info;
+module firecracker_d.models.instance_action_info;
 import jsonizer;
 
 enum InstanceActionInfoType : string {
@@ -6,7 +6,7 @@ enum InstanceActionInfoType : string {
 	InstanceStart = "InstanceStart",
 	InstanceHalt = "InstanceHalt"
 }
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct InstanceActionInfo {
 	mixin JsonizeMe;

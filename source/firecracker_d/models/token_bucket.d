@@ -1,6 +1,6 @@
-module models.token_bucket;
+module firecracker_d.models.token_bucket;
 import jsonizer;
-import models.base_model;
+import firecracker_d.models.base_model;
 
 struct TokenBucket {
 	mixin JsonizeMe;

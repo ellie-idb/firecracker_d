@@ -1,6 +1,6 @@
 import std.stdio;
 import jsonizer;
-import models.client_models;
+import firecracker_d.models.client_models;
 import std.json;
 
 unittest {
