@@ -1,0 +1,7 @@
+name "firecracker_d"
+description "A minimal D application."
+authors "Harrison Ford"
+copyright "wtfpl"
+license "proprietary"
+dependency "requests" version="~>1.0.5"
+dependency "jsonizer" version="~>0.7.6"
