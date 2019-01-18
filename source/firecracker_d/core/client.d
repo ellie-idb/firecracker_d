@@ -13,13 +13,11 @@ class FirecrackerAPIClient {
 
 	Response put(string path, string model) {
 		Response r = rq.exec!"PUT"("http://localhost" ~ path, model);
-
 		return r;
 	}
 
 	Response get(string path, string query = "") {
 		Response r = rq.exec!"GET"("http://localhost" ~ path);
-
 		return r;
 	}
 

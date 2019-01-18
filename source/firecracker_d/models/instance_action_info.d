@@ -12,8 +12,11 @@ struct InstanceActionInfo {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
+	// One of three actions that is meant to control the microVM
 	@jsonize("action_type", Jsonize.opt) InstanceActionInfoType actionType;
 
+	// If there is an associated payload with the action, it is
+	// placed here.
 	@jsonize("payload", Jsonize.opt) string payload;
 	
 

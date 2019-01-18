@@ -1,6 +1,12 @@
 module firecracker_d.models.cpu_template;
 import jsonizer;
 
+/* 
+   The CPU templates are flags that will disable 
+   certain features on the MicroVM, primarily 
+   used by AWS internally.
+*/
+
 enum CPUTemplate : string {
 	Uninitialized = "Uninitialized",
 	C3 = "C3",

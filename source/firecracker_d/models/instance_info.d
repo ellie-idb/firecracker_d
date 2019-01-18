@@ -14,7 +14,11 @@ struct InstanceInfo {
 		Halted = "Halted"
 	}
 
+	// What is the current ID of our firecracker microvm?
+
 	@jsonize("id", Jsonize.opt) string id;
+
+	// And what's it's state?
 
 	@jsonize("state", Jsonize.opt) InstanceState state;
 
