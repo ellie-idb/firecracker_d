@@ -44,12 +44,22 @@ struct Drive {
 			return true;
 		}
 		else {
-			FirecrackerError e = FirecrackerError(r.responseBody.toString);
-			throw new FirecrackerException(e);
+			throwFromResponse(r);
+			return false;
 		}
 			
 	}
 
+	bool patch(FirecrackerAPIClient cl) {
+		Response r = cl.patch("/drives/" ~ driveID, this.toString);
+		if(r.code == 204) {
+			return true;
+		}
+		else {
+			throwFromResponse(r);
+			return false;
+		}
+	}
+
 
 }
-
