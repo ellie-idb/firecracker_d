@@ -1,17 +1,18 @@
 module firecracker_d.models.vsock;
 import jsonizer;
 import firecracker_d.models.base_model;
+/***
+  This enables local communication to occur between a 
+  microVM, and the host, by creating a socket on both
+  the host, as well as the guest.
 
+  Read more here: http://man7.org/linux/man-pages/man7/vsock.7.html
+***/
 struct Vsock {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
-	/*
-	   This enables local communication to occur between a 
-	   microVM, and the host, by creating a socket on both
-	   the host, as well as the guest. 
-	   Read more here: http://man7.org/linux/man-pages/man7/vsock.7.html
-	*/
+	
 
 	// The guest's Context Identifier
 	@jsonize("guest_cid", Jsonize.opt) long guestCid;

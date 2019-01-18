@@ -7,16 +7,24 @@ struct MachineConfiguration {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
-	// What should we base the machine's configuration off of?
+	/***
+	* CPU Template to use for default options
+	***/
 	@jsonize("cpu_template", Jsonize.opt) CPUTemplate cpuTemplate;
 
-	// Is hyperthreading enabled?
+	/***
+	* Option to enable hyperthreading for the guest
+	***/
 	@jsonize("ht_enabled", Jsonize.opt) bool htEnabled;
 
-	// Machine's allocated memory size in MiB
+	/***
+	* Integer representing the guest's memory size in MiB
+	***/
 	@jsonize("mem_size_mib", Jsonize.opt) long memSizeMib;
 
-	// How many vCPUs should we allocate to this box?
+	/***
+	* Integer representing the amount of vCPUs given to the guest
+	***/
 	@jsonize("vcpu_count", Jsonize.opt) long vcpuCount;
 
 	bool put(FirecrackerAPIClient cl) {

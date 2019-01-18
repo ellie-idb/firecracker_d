@@ -1,6 +1,10 @@
 module firecracker_d.models.instance_action_info;
 import jsonizer;
 
+/***
+* Possible actions that we can do to control our 
+* microVM.
+***/
 enum InstanceActionInfoType : string {
 	BlockDeviceRescan = "BlockDeviceRescan",
 	InstanceStart = "InstanceStart",
@@ -12,11 +16,14 @@ struct InstanceActionInfo {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
-	// One of three actions that is meant to control the microVM
+	/***
+	* Action we would like to execute on the microVM
+	***/
 	@jsonize("action_type", Jsonize.opt) InstanceActionInfoType actionType;
 
-	// If there is an associated payload with the action, it is
-	// placed here.
+	/***
+	* Associated payload with the action
+	***/
 	@jsonize("payload", Jsonize.opt) string payload;
 	
 

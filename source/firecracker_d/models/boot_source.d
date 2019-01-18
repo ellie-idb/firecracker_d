@@ -3,11 +3,11 @@ import jsonizer;
 import firecracker_d.models.base_model;
 
 /***
-* Boot Source from the Go API
-*
-* This provides the microVM with the kernel boot arguments
-* as well as the vmlinux/vmlinuz/bzImage binary needed 
-* to boot the kernel.
+Boot Source from the Go API
+
+This provides the microVM with the kernel boot arguments
+as well as the vmlinux/vmlinuz/bzImage binary needed 
+to boot the kernel.
 ***/
 struct BootSource {
 	mixin BaseModel;
