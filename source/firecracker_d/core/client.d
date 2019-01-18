@@ -22,11 +22,22 @@ class FirecrackerAPIClient {
 		return r;
 	}
 
+	Response patch(string path, string model) {
+		Response r = rq.exec!"PATCH"("http://localhost" ~ path, model);
+		return r;
+	}
+
 	/***
 	* Do an HTTP GET to the Firecracker server with a given path
 	***/
 	Response get(string path, string query = "") {
-		Response r = rq.exec!"GET"("http://localhost" ~ path);
+		Response r;
+		if(query != "") {
+			r = rq.exec!"GET"("http://localhost" ~ path, query);
+		}
+		else {
+			r = rq.exec!"GET"("http://localhost" ~ path);
+		}
 		return r;
 	}
 

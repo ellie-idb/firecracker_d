@@ -29,9 +29,13 @@ struct NetworkInterface {
 	@jsonize("iface_id", Jsonize.yes) string ifaceID;
 
 	/***
-	* Rate limiters, meant to stop network traffic flooding from occuring.
+	* Recieve rate limiter, meant to stop network traffic flooding from occuring.
 	***/
 	@jsonize("rx_rate_limiter", Jsonize.opt) RateLimiter rxRateLimiter;
+
+	/***
+	* Transmit rate limiter, meant to stop network traffic flooding from occuring.
+	***/
 	@jsonize("tx_rate_limiter", Jsonize.opt) RateLimiter txRateLimiter;
 
 	/***

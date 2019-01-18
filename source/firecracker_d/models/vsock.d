@@ -14,9 +14,14 @@ struct Vsock {
 
 	
 
-	// The guest's Context Identifier
+	/***
+	* The guest's Context Identifier
+	***/
 	@jsonize("guest_cid", Jsonize.opt) long guestCid;
 
+	/***
+	* Required: ID of the Vsock on the host
+	***/
 	@jsonize("id", Jsonize.yes) string id;
 
 	bool put(FirecrackerAPIClient cl) {

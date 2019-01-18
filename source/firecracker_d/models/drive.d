@@ -9,12 +9,12 @@ struct Drive {
 	@jsonize("drive_id", Jsonize.yes) string driveID;
 
 	/***
-	* Is the drive going to be mounted as read-only?
+	* Required: bool representing if the disk will be read-only
 	***/
 	@jsonize("is_read_only", Jsonize.yes) bool isReadOnly;
 
 	/***
-	* Is the drive going to be mounted as "/"?
+	* Required: bool representing if the disk will be mounted as the root partition
 	***/
 	@jsonize("is_root_device", Jsonize.yes) bool isRootDevice;
 
@@ -26,7 +26,7 @@ struct Drive {
 	@jsonize("partuuid", Jsonize.opt) string partUUID;
 
 	/***
-	* Path to drive on the host's file system
+	* Required: Path to drive on the host's file system
 	***/
 	@jsonize("path_on_host", Jsonize.yes) string pathOnHost;
 
