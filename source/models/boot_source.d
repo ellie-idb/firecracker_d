@@ -14,7 +14,7 @@ struct BootSource {
 	@jsonize("kernel_image_path", Jsonize.yes) string kernelImagePath;
 
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/boot_source", this.toString);
+		Response r = cl.put("/boot-source", this.toString);
 		
 		if(r.code == 204) {
 			return true;

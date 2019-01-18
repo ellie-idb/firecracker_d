@@ -9,11 +9,14 @@ struct NetworkInterface {
 
 	@jsonize("guest_mac", Jsonize.opt) string guestMAC;
 
+	@jsonize("host_dev_name", Jsonize.opt) string hostDevName;
+
 	@jsonize("iface_id", Jsonize.yes) string ifaceID;
 
 	@jsonize("rx_rate_limiter", Jsonize.opt) RateLimiter rxRateLimiter;
 
 	@jsonize("tx_rate_limiter", Jsonize.opt) RateLimiter txRateLimiter;
+	@jsonize("state", Jsonize.opt) string state;
 
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/network-interfaces/" ~ ifaceID, this.toString);
