@@ -22,6 +22,9 @@ class FirecrackerAPIClient {
 		return r;
 	}
 
+	/***
+	* Do an HTTP PATCH to the firecracker server with a given path
+	***/
 	Response patch(string path, string model) {
 		Response r = rq.exec!"PATCH"("http://localhost" ~ path, model);
 		return r;
