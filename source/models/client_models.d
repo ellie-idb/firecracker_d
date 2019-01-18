@@ -7,6 +7,7 @@ public import models.instance_action_info;
 public import models.instance_info;
 public import models.instance_action_info;
 public import models.logger;
+public import models.network_interface;
 public import models.machine_configuration;
 public import models.partial_drive;
 public import models.rate_limiter;
