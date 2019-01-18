@@ -13,17 +13,28 @@ struct Drive {
 	***/
 	@jsonize("is_read_only", Jsonize.yes) bool isReadOnly;
 
-	// Is the drive going to be mounted as "/"?
+	/***
+	* Is the drive going to be mounted as "/"?
+	***/
 	@jsonize("is_root_device", Jsonize.yes) bool isRootDevice;
 
-	// Represents the unique ID of the boot partition
-	// Only used if isRootDevice == true
+	/***
+	* Represents the unique ID of the boot partition
+	*
+	* Only used if `isRootDevice == true`
+	***/
 	@jsonize("partuuid", Jsonize.opt) string partUUID;
 
-	// Where is this drive on the host's file system?
+	/***
+	* Path to drive on the host's file system
+	***/
 	@jsonize("path_on_host", Jsonize.yes) string pathOnHost;
 
-	// Stop the user from thrashing their disk by rate-limiting it
+	/***
+	* Ratelimiter. Intended to stop a user from
+	* thrashing our disk, as well as keeping the microVM under
+	* control.
+	***/
 	@jsonize("rate_limiter", Jsonize.opt) RateLimiter rateLimiter; 
 
 	bool put(FirecrackerAPIClient cl) {

@@ -4,6 +4,7 @@ import firecracker_d.models.base_model;
 
 /***
 * Boot Source from the Go API
+*
 * This provides the microVM with the kernel boot arguments
 * as well as the vmlinux/vmlinuz/bzImage binary needed 
 * to boot the kernel.
@@ -11,14 +12,17 @@ import firecracker_d.models.base_model;
 struct BootSource {
 	mixin BaseModel;
 	mixin JsonizeMe;
+
 	/***
 	* Optional
+	*
 	* Kernel boot arguments
 	***/
 	@jsonize("boot_args", Jsonize.opt) string bootArgs;
 
 	/***
 	* Non-optional
+	*
 	* Path to kernel image used to boot guest
 	***/
 	@jsonize("kernel_image_path", Jsonize.yes) string kernelImagePath;

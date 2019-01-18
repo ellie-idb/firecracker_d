@@ -6,6 +6,9 @@ struct InstanceInfo {
 	mixin JsonizeMe;
 	mixin BaseModel;
 
+	/***
+	*  Possible states that our microVM could be in
+	***/
 	enum InstanceState : string {
 		Uninitialized = "Uninitialized",
 		Starting = "Starting",
@@ -14,12 +17,14 @@ struct InstanceInfo {
 		Halted = "Halted"
 	}
 
-	// What is the current ID of our firecracker microvm?
-
+	/***
+	* ID of our current microVM
+	***/
 	@jsonize("id", Jsonize.opt) string id;
 
-	// And what's it's state?
-
+	/***
+	* State of our current microVM
+	***/
 	@jsonize("state", Jsonize.opt) InstanceState state;
 
 	this(FirecrackerAPIClient cl) {
