@@ -8,7 +8,9 @@ struct Drive {
 
 	@jsonize("drive_id", Jsonize.yes) string driveID;
 
-	// Is the drive going to be mounted as read-only?
+	/***
+	* Is the drive going to be mounted as read-only?
+	***/
 	@jsonize("is_read_only", Jsonize.yes) bool isReadOnly;
 
 	// Is the drive going to be mounted as "/"?

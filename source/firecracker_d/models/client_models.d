@@ -1,10 +1,10 @@
 module firecracker_d.models.client_models;
 
-/* 
-   This file is meant to be imported by the end-user
-   so they can have access to all models, and to avoid
-   the sloppy mess that is importing everything.
-*/
+/*** 
+*   This file is meant to be imported by the end-user
+*   so they can have access to all models, and to avoid
+*   the sloppy mess that is importing everything.
+***/
 
 public import firecracker_d.models.boot_source;
 public import firecracker_d.models.cpu_template;
