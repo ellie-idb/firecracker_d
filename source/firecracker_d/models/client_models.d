@@ -14,6 +14,7 @@ public import firecracker_d.models.instance_action_info;
 public import firecracker_d.models.logger;
 public import firecracker_d.models.network_interface;
 public import firecracker_d.models.machine_configuration;
+public import firecracker_d.models.mmds;
 public import firecracker_d.models.partial_drive;
 public import firecracker_d.models.rate_limiter;
 public import firecracker_d.models.token_bucket;
