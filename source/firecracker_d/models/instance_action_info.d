@@ -8,7 +8,8 @@ import jsonizer;
 enum InstanceActionInfoType : string {
 	BlockDeviceRescan = "BlockDeviceRescan",
 	InstanceStart = "InstanceStart",
-	InstanceHalt = "InstanceHalt"
+//	InstanceHalt = "InstanceHalt",
+	FlushMetrics = "FlushMetrics"
 }
 import firecracker_d.models.base_model;
 
