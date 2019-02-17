@@ -61,7 +61,7 @@ struct Logger {
 	***/
 
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/logger", this.toString);
+		Response r = cl.put("/logger", this.stringify);
 		if(r.code == 204) {
 			return true;
 		}

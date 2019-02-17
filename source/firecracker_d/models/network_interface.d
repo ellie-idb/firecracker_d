@@ -4,7 +4,6 @@ import firecracker_d.models.rate_limiter;
 
 struct NetworkInterface {
 	mixin JsonizeMe;
-	mixin BaseModel;
 
 	/***
 	* Allow requests to the MicroVM Metadata Service
@@ -39,18 +38,13 @@ struct NetworkInterface {
 	@jsonize("tx_rate_limiter", Jsonize.opt) RateLimiter txRateLimiter;
 
 	/***
-	* The current state of the interface
-	***/
-	@jsonize("state", Jsonize.opt) string state;
-
-	/***
 	  Create the network interface via the Firecracker API
 
 	  Throws a FirecrackerException if failed.
 	***/
 
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/network-interfaces/" ~ ifaceID, this.toString);
+		Response r = cl.put("/network-interfaces/" ~ ifaceID, this.stringify);
 
 		if(r.code == 204) {
 			return true;
@@ -60,6 +54,10 @@ struct NetworkInterface {
 			return false;
 		}
 
+	}
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
 	}
 
 }

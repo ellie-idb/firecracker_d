@@ -4,7 +4,6 @@ import firecracker_d.models.base_model;
 
 struct Drive {
 	mixin JsonizeMe;
-	mixin BaseModel;
 
 	@jsonize("drive_id", Jsonize.yes) string driveID;
 
@@ -43,7 +42,7 @@ struct Drive {
 	  Throws a FirecrackerException if failed.
 	***/
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/drives/" ~ driveID, this.toString);
+		Response r = cl.put("/drives/" ~ driveID, this.stringify);
 
 		if(r.code == 204) {
 			return true;
@@ -61,7 +60,7 @@ struct Drive {
 	  Throws a FirecrackerException if failed.
 	***/
 	bool patch(FirecrackerAPIClient cl) {
-		Response r = cl.patch("/drives/" ~ driveID, this.toString);
+		Response r = cl.patch("/drives/" ~ driveID, this.stringify);
 		if(r.code == 204) {
 			return true;
 		}
@@ -69,6 +68,10 @@ struct Drive {
 			throwFromResponse(r);
 			return false;
 		}
+	}
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
 	}
 
 

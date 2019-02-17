@@ -28,7 +28,7 @@ struct Vsock {
 	  Throws a FirecrackerException if failed.
 	***/
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/vsocks/" ~ id, this.toString);
+		Response r = cl.put("/vsocks/" ~ id, this.stringify);
 
 		if(r.code == 201 || r.code == 204) {
 			return true;

@@ -12,8 +12,10 @@ public import std.json;
 ***/
 
 mixin template BaseModel() {
-	string toString() {
-		return this.toJSON.toString;
+    import std.json;
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
 	}
 }
 

@@ -9,7 +9,7 @@ import firecracker_d.models.base_model;
 ***/
 struct TokenBucket {
 	mixin JsonizeMe;
-	mixin BaseModel;
+
 	
 	/***
 	* Total number of tokens this bucket can hold
@@ -25,4 +25,9 @@ struct TokenBucket {
 	* Time in MS for the bucket to refill 
 	***/
 	@jsonize("refill_time", Jsonize.opt) long refillTime;
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
+	}
+
 }

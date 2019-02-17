@@ -71,8 +71,8 @@ class UnixStream : NetworkStream {
                 __isConnected = true;
                 break;
             } catch (SocketException e) {
-		writeln("Unable to connect..");
                 s.close();
+                throw new Exception("Could not connect to server.");
             }
         }
         if ( !__isConnected ) {
@@ -148,7 +148,7 @@ class UnixStream : NetworkStream {
     };
 
     void setFactorySocket(string socket) {
-	    _facSocket = socket;
+	    _facSocket = socket.idup;
     }
 
     NetworkStream dg(string scheme, string host, ushort port) {

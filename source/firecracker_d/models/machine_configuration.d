@@ -5,7 +5,6 @@ import firecracker_d.models.base_model;
 
 struct MachineConfiguration {
 	mixin JsonizeMe;
-	mixin BaseModel;
 
 	/***
 	* CPU Template to use for default options
@@ -34,7 +33,7 @@ struct MachineConfiguration {
 	***/
 
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/machine-config", this.toString);
+		Response r = cl.put("/machine-config", this.stringify);
 
 		if(r.code == 204) {
 			return true;
@@ -60,6 +59,11 @@ struct MachineConfiguration {
 		else {
 			throwFromResponse(r);
 		}
+	}
+
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
 	}
 
 

@@ -5,7 +5,6 @@ import firecracker_d.models.base_model;
 
 struct RateLimiter {
 	mixin JsonizeMe;
-	mixin BaseModel;
 
 	/***
 	* Token bucket with bytes as tokens
@@ -16,4 +15,9 @@ struct RateLimiter {
 	* Token bucket with operations as tokens
 	***/
 	@jsonize("ops", Jsonize.opt) TokenBucket ops;
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
+	}
+
 }

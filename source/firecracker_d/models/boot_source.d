@@ -3,7 +3,6 @@ import jsonizer;
 import firecracker_d.models.base_model;
 
 struct BootSource {
-	mixin BaseModel;
 	mixin JsonizeMe;
 
 	/***
@@ -22,7 +21,7 @@ struct BootSource {
 	  Throws a FirecrackerException if failed.
 	***/
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/boot-source", this.toString);
+		Response r = cl.put("/boot-source", this.stringify);
 		
 		if(r.code == 204) {
 			return true;
@@ -32,5 +31,10 @@ struct BootSource {
 			return false;
 		}
 	}
+	string stringify() {
+        JSONValue j = jsonizer.toJSON(this);
+        return j.toString;
+	}
+
 }
 

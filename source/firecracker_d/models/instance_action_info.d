@@ -9,7 +9,8 @@ enum InstanceActionInfoType : string {
 	BlockDeviceRescan = "BlockDeviceRescan",
 	InstanceStart = "InstanceStart",
 //	InstanceHalt = "InstanceHalt",
-	FlushMetrics = "FlushMetrics"
+	FlushMetrics = "FlushMetrics",
+	Reboot = "SendCtrlAltDel"
 }
 import firecracker_d.models.base_model;
 
@@ -35,7 +36,10 @@ struct InstanceActionInfo {
 	  Throws a FirecrackerException if failed.
 	***/
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/actions", this.toString);
+		Response r = cl.put("/actions", this.stringify);
+
+        import std.stdio : writeln;
+        writeln("put json: " ~ this.stringify);
 
 		if(r.code == 204) {
 			return true;
