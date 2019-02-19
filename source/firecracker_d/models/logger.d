@@ -1,5 +1,5 @@
 module firecracker_d.models.logger;
-import jsonizer;
+import asdf;
 
 /***
 * Verbosity levels for the logger
@@ -13,46 +13,45 @@ enum LoggerLevel : string {
 import firecracker_d.models.base_model;
 
 struct Logger {
-	mixin JsonizeMe;
 	mixin BaseModel;
 
 	/***
 	* Verbosity level for our logger
 	***/
-	@jsonize("level", Jsonize.opt) LoggerLevel level;
+	@serializationKeys("level") LoggerLevel level;
 
 	/***
 	* Output location for the log
 	*
 	* Can be a named pipe, or the path to a file
 	***/
-	@jsonize("log_fifo", Jsonize.opt) string logFifo;
+	@serializationKeys("log_fifo") string logFifo;
 
 	/***
 	* Output location for the VM's metrics
 	*
 	* Can be a named pipe, or the path to a file
 	***/
-	@jsonize("metrics_fifo", Jsonize.opt) string metricsFifo;
+	@serializationKeys("metrics_fifo") string metricsFifo;
 
 	/***
 	* Extra options to pass to the logger
 	*
 	* Mostly undocumented..
 	***/
-	@jsonize("options", Jsonize.opt) string[] options;
+	@serializationKeys("options") string[] options;
 	
 	/***
 	* Option to show the level of individual events in the
 	* log file.
 	***/
-	@jsonize("show_level", Jsonize.opt) bool showLevel;
+	@serializationKeys("show_level") bool showLevel;
 
 	/***
 	* Option to show the origin of where log events originate
 	* from.
 	***/
-	@jsonize("show_log_origin", Jsonize.opt) bool showLogOrigin;
+	@serializationKeys("show_log_origin") bool showLogOrigin;
 
 	/***
 	  Create the logger via the Firecracker API

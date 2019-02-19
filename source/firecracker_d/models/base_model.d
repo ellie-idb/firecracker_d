@@ -1,9 +1,8 @@
 module firecracker_d.models.base_model;
 public import requests;
-public import jsonizer;
+public import asdf;
 public import firecracker_d.models.client_models;
 public import firecracker_d.core.client;
-public import std.json;
 
 /*** 
 *   This file is meant to provide all of the imports to the models, as well as
@@ -12,10 +11,8 @@ public import std.json;
 ***/
 
 mixin template BaseModel() {
-    import std.json;
 	string stringify() {
-        JSONValue j = jsonizer.toJSON(this);
-        return j.toString;
+        return serializeToJson(this);
 	}
 }
 

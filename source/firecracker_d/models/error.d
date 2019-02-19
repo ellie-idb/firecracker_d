@@ -1,5 +1,4 @@
 module firecracker_d.models.error;
-import jsonizer;
 import firecracker_d.models.base_model;
 
 /*
@@ -9,12 +8,10 @@ import firecracker_d.models.base_model;
 */
 
 struct FirecrackerError {
-	mixin JsonizeMe;
-	@jsonize("fault_message", Jsonize.opt) string faultMessage;
+	@serializationKeys("fault_message") string faultMessage;
 
 	this(string responseBody) {
-		import std.json : parseJSON;
-		faultMessage = responseBody.parseJSON().fromJSON!FirecrackerError.faultMessage;
+		faultMessage = responseBody.deserialize!FirecrackerError.faultMessage;
 	}
 }
 

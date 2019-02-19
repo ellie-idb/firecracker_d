@@ -1,5 +1,4 @@
 module firecracker_d.models.mmds;
-import jsonizer;
 // Expose std.json so you don't have to deal with importing it
 public import std.json;
 import firecracker_d.models.base_model;

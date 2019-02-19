@@ -3,38 +3,40 @@ import firecracker_d.models.rate_limiter;
 import firecracker_d.models.base_model;
 
 struct Drive {
-	mixin JsonizeMe;
+	mixin BaseModel;
 
-	@jsonize("drive_id", Jsonize.yes) string driveID;
+	@serializationRequired @serializationKeys("drive_id") string driveID;
 
 	/***
 	* Required: bool representing if the disk will be read-only
 	***/
-	@jsonize("is_read_only", Jsonize.yes) bool isReadOnly;
+	@serializationRequired @serializationKeys("is_read_only") bool isReadOnly;
 
 	/***
 	* Required: bool representing if the disk will be mounted as the root partition
 	***/
-	@jsonize("is_root_device", Jsonize.yes) bool isRootDevice;
+    @serializationRequired 
+	@serializationKeys("is_root_device") bool isRootDevice;
 
 	/***
 	* Represents the unique ID of the boot partition
 	*
 	* Only used if `isRootDevice == true`
 	***/
-	@jsonize("partuuid", Jsonize.opt) string partUUID;
+	@serializationKeys("partuuid") string partUUID;
 
 	/***
 	* Required: Path to drive on the host's file system
 	***/
-	@jsonize("path_on_host", Jsonize.yes) string pathOnHost;
+	@serializationRequired 
+    @serializationKeys("path_on_host") string pathOnHost;
 
 	/***
 	* Ratelimiter. Intended to stop a user from
 	* thrashing our disk, as well as keeping the microVM under
 	* control.
 	***/
-	@jsonize("rate_limiter", Jsonize.opt) RateLimiter rateLimiter; 
+	@serializationKeys("rate_limiter") RateLimiter rateLimiter; 
 
 	/***
 	  Create the drive via the Firecracker API
@@ -69,10 +71,4 @@ struct Drive {
 			return false;
 		}
 	}
-	string stringify() {
-        JSONValue j = jsonizer.toJSON(this);
-        return j.toString;
-	}
-
-
 }

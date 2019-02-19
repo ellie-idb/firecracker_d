@@ -1,19 +1,20 @@
 module firecracker_d.models.boot_source;
-import jsonizer;
+import asdf;
 import firecracker_d.models.base_model;
 
 struct BootSource {
-	mixin JsonizeMe;
+    mixin BaseModel;
 
 	/***
 	* Kernel boot arguments
 	***/
-	@jsonize("boot_args", Jsonize.opt) string bootArgs;
+	@serializationKeys("boot_args") string bootArgs;
 
 	/***
 	* Required: Path to kernel bzImage/vmlinux used to boot guest
 	***/
-	@jsonize("kernel_image_path", Jsonize.yes) string kernelImagePath;
+	@serializationRequired 
+    @serializationKeys("kernel_image_path") string kernelImagePath;
 
 	/***
 	  Create the boot source via the Firecracker API
@@ -31,10 +32,5 @@ struct BootSource {
 			return false;
 		}
 	}
-	string stringify() {
-        JSONValue j = jsonizer.toJSON(this);
-        return j.toString;
-	}
-
 }
 

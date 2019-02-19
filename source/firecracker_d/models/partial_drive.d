@@ -1,5 +1,4 @@
 module firecracker_d.models.partial_drive;
-import jsonizer;
 import firecracker_d.models.base_model;
 
 /*** 
@@ -7,10 +6,11 @@ import firecracker_d.models.base_model;
 ***/
 
 struct PartialDrive {
-	mixin JsonizeMe;
 	mixin BaseModel;
 
-	@jsonize("drive_id", Jsonize.yes) string driveID;
+    @serializationRequired
+	@serializationKeys("drive_id") string driveID;
 
-	@jsonize("path_on_host", Jsonize.yes) string pathOnHost;
+    @serializationRequired
+	@serializationKeys("path_on_host") string pathOnHost;
 }

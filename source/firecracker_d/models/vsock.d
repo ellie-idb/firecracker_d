@@ -1,5 +1,4 @@
 module firecracker_d.models.vsock;
-import jsonizer;
 import firecracker_d.models.base_model;
 /***
   This enables local communication to occur between a 
@@ -9,18 +8,18 @@ import firecracker_d.models.base_model;
   Read more here: http://man7.org/linux/man-pages/man7/vsock.7.html
 ***/
 struct Vsock {
-	mixin JsonizeMe;
 	mixin BaseModel;
 
 	/***
 	* The guest's Context Identifier
 	***/
-	@jsonize("guest_cid", Jsonize.opt) long guestCid;
+	@serializationKeys("guest_cid") long guestCid;
 
 	/***
 	* Required: ID of the Vsock on the host
 	***/
-	@jsonize("id", Jsonize.yes) string id;
+    @serializationRequired
+	@serializationKeys("id") string id;
 
 	/***
 	  Create the Vsock via the Firecracker API

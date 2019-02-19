@@ -1,5 +1,5 @@
 module firecracker_d.models.instance_action_info;
-import jsonizer;
+import asdf;
 
 /***
 * Possible actions that we can do to control our 
@@ -15,20 +15,17 @@ enum InstanceActionInfoType : string {
 import firecracker_d.models.base_model;
 
 struct InstanceActionInfo {
-	mixin JsonizeMe;
 	mixin BaseModel;
 
 	/***
 	* Action we would like to execute on the microVM
 	***/
-	@jsonize("action_type", Jsonize.opt) InstanceActionInfoType actionType;
+	@serializationKeys("action_type") InstanceActionInfoType actionType;
 
 	/***
 	* Associated payload with the action
 	***/
-	@jsonize("payload", Jsonize.opt) string payload;
-	
-
+	@serializationKeys("payload") string payload;
 
 	/***
 	  Execute the action via the Firecracker API
@@ -49,8 +46,6 @@ struct InstanceActionInfo {
 			return false;
 		}
 	}
-
-
 
 }
 

@@ -3,7 +3,6 @@ import requests;
 import firecracker_d.models.client_models;
 import firecracker_d.core.transport;
 import std.json;
-import jsonizer;
 
 /***
 * The base class for our API requests

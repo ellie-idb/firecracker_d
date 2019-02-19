@@ -3,8 +3,8 @@ description "An API client for Amazon's Firecracker microVM application."
 authors "Harrison Ford"
 copyright "no copyright ever"
 license "WTFPL"
-dependency "requests" version="~>1.0.5"
-dependency "jsonizer" version="~>0.7.6"
+dependency "requests" version="~>1.0.5-fixssl"
+dependency "asdf" version="~>0.4.5"
 configuration "library" {
 	targetType "library"
 }

@@ -3,39 +3,40 @@ import firecracker_d.models.base_model;
 import firecracker_d.models.rate_limiter;
 
 struct NetworkInterface {
-	mixin JsonizeMe;
+    mixin BaseModel;
 
 	/***
 	* Allow requests to the MicroVM Metadata Service
 	***/
-	@jsonize("allow_mmds_requests", Jsonize.opt) bool allowMMDSRequests;
+	@serializationKeys("allow_mmds_requests") bool allowMMDSRequests;
 
 	/***
 	* The MAC address presented to the guest operating system for this device
 	***/
-	@jsonize("guest_mac", Jsonize.opt) string guestMAC;
+	@serializationKeys("guest_mac") string guestMAC;
 
 	/***
 	* The host's interface device name that we should use for networking
 	*
 	* Example: tap0, eth0, etc.
 	***/
-	@jsonize("host_dev_name", Jsonize.opt) string hostDevName;
+	@serializationKeys("host_dev_name") string hostDevName;
 
 	/***
 	* Required: the ID we want to use for this network interface
 	***/
-	@jsonize("iface_id", Jsonize.yes) string ifaceID;
+    @serializationRequired
+	@serializationKeys("iface_id") string ifaceID;
 
 	/***
 	* Recieve rate limiter, meant to stop network traffic flooding from occuring.
 	***/
-	@jsonize("rx_rate_limiter", Jsonize.opt) RateLimiter rxRateLimiter;
+	@serializationKeys("rx_rate_limiter") RateLimiter rxRateLimiter;
 
 	/***
 	* Transmit rate limiter, meant to stop network traffic flooding from occuring.
 	***/
-	@jsonize("tx_rate_limiter", Jsonize.opt) RateLimiter txRateLimiter;
+	@serializationKeys("tx_rate_limiter") RateLimiter txRateLimiter;
 
 	/***
 	  Create the network interface via the Firecracker API
@@ -55,9 +56,4 @@ struct NetworkInterface {
 		}
 
 	}
-	string stringify() {
-        JSONValue j = jsonizer.toJSON(this);
-        return j.toString;
-	}
-
 }

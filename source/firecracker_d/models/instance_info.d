@@ -1,9 +1,8 @@
 module firecracker_d.models.instance_info;
-import jsonizer;
+import asdf;
 import firecracker_d.models.base_model;
 
 struct InstanceInfo {
-	mixin JsonizeMe;
 	mixin BaseModel;
 
 	/***
@@ -20,12 +19,12 @@ struct InstanceInfo {
 	/***
 	* ID of our current microVM
 	***/
-	@jsonize("id", Jsonize.opt) string id;
+	@serializationKeys("id") string id;
 
 	/***
 	* State of our current microVM
 	***/
-	@jsonize("state", Jsonize.opt) InstanceState state;
+	@serializationKeys("state") InstanceState state;
 
 	/***
 	  Get the microVM's state via the Firecracker API
@@ -36,7 +35,7 @@ struct InstanceInfo {
 		Response r = cl.get("/");
 
 		if(r.code == 200) {
-			InstanceInfo k = r.responseBody.toString.parseJSON.fromJSON!InstanceInfo;
+			InstanceInfo k = r.responseBody.toString.deserialize!InstanceInfo();
 			this = k;
 		}
 		else {

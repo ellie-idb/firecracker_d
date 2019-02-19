@@ -1,5 +1,4 @@
 module firecracker_d.models.cpu_template;
-import jsonizer;
 
 /*** 
 *   The CPU templates are flags that will disable 
