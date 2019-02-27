@@ -10,7 +10,7 @@ enum InstanceActionInfoType : string {
 	InstanceStart = "InstanceStart",
 //	InstanceHalt = "InstanceHalt",
 	FlushMetrics = "FlushMetrics",
-	Reboot = "SendCtrlAltDel"
+	SendCtrlAltDel = "SendCtrlAltDel"
 }
 import firecracker_d.models.base_model;
 
