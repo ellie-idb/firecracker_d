@@ -19,32 +19,50 @@ struct MachineConfiguration {
 	/***
 	* Option to enable hyperthreading for the guest
 	***/
-	@serializationKeys("ht_enabled") @serializationRequired bool htEnabled;
+    @serializationRequired 
+	@serializationKeys("ht_enabled") bool htEnabled;
 
 	/***
 	* Guest's memory size in MiB
 	***/
-	@serializationKeys("mem_size_mib") @serializationRequired long memSizeMib;
+    @serializationRequired
+	@serializationKeys("mem_size_mib") long memSizeMib;
 
     /***
     * Enable dirty page tracking
     ***/
-    @serializationKeys("track_dirty_pages") @serializationRequired bool trackDirtyPages;
+    @serializationRequired
+    @serializationKeys("track_dirty_pages") bool trackDirtyPages;
 
 	/***
 	* Amount of vCPUs given to the guest
 	***/
-	@serializationKeys("vcpu_count") @serializationRequired long vcpuCount;
+    @serializationRequired 
+	@serializationKeys("vcpu_count") long vcpuCount = 1;
 
 
 	/***
 	* Modify the microVM's configuration via the Firecracker API
     * Throws: FirecrackerException
 	***/
-
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/machine-config", this.stringify);
 
+		if(r.code == 204) {
+			return true;
+		}
+		else {
+			throwFromResponse(r);
+			return false;
+		}
+	}
+
+    /***
+    * Partially updates the Machine Configuration of the VM. Pre-boot only.
+    * Throws: FirecrackerException
+    ***/
+	bool patch(FirecrackerAPIClient cl) {
+		Response r = cl.patch("/machine-config", this.stringify);
 		if(r.code == 204) {
 			return true;
 		}
@@ -58,7 +76,6 @@ struct MachineConfiguration {
 	* Get the microVM's config via the Firecracker API
 	* Throws: FirecrackerException
 	***/
-
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/machine-config");
 		if(r.code == 200) {

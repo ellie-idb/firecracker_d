@@ -30,6 +30,21 @@ struct SnapshotCreateParams {
     * The microVM version for which we want to create the snapshot. It is optional and it defaults to the current version.
     ***/
     @serializationKeys("version") string version_;
+
+    /***
+    * Creates a new snapshot.
+    * The microVM should be in the Paused state.
+    * Throws: FirecrackerException
+    ***/
+    bool put(FirecrackerAPIClient cl) {
+        Response r = cl.put("/snapshot/create", this.stringify);
+        if (r.code == 204) {
+            return true;
+        } else {
+            throwFromResponse(r);
+            return false;
+        }
+    }
 }
 
 /***
@@ -55,5 +70,19 @@ struct SnapshotLoadParams {
     @serializationRequired
     @serializationKeys("snapshot_path") string snapshotPath;
 
+    /***
+    * Loads a snapshot. Pre-boot only.
+    * Only accepted on a fresh Firecracker process (before configuring any resource other than the Logger and Metrics).
+    * Throws: FirecrackerException
+    ***/
+    bool put(FirecrackerAPIClient cl) {
+        Response r = cl.put("/snapshot/load", this.stringify);
+        if (r.code == 204) {
+            return true;
+        } else {
+            throwFromResponse(r);
+            return false;
+        }
+    }
 }
 

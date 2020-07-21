@@ -18,7 +18,7 @@ struct Metrics {
     * Throws: FirecrackerException
 	***/
 	bool put(FirecrackerAPIClient cl) {
-		Response r = cl.put("/logger", this.stringify);
+		Response r = cl.put("/metrics", this.stringify);
 		if(r.code == 204) {
 			return true;
 		}
@@ -27,7 +27,6 @@ struct Metrics {
 			return false;
 		}
 	}
-
 }
 
 

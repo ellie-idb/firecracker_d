@@ -14,5 +14,19 @@ struct VM {
 
     @serializationRequired
     @serializationKeys("state") VMState state;
+
+	/***
+    * Updates the microVM state.
+	* Throws: FirecrackerException
+	***/
+    bool patch(FirecrackerAPIClient cl) {
+        Response r = cl.patch("/vm", this.stringify);
+        if (r.code == 204) {
+            return true;
+        } else {
+            throwFromResponse(r);
+            return false;
+        }
+    }
 }
 

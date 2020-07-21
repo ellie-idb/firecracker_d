@@ -54,9 +54,28 @@ struct Drive {
 		}
 			
 	}
+}
+
+/*** 
+* Used to update drive information after microvm start?
+***/
+struct PartialDrive {
+	mixin BaseModel;
+    /***
+    * Firecracker ID for drive
+    ***/
+    @serializationRequired
+	@serializationKeys("drive_id") string driveID;
+
+    /***
+    * Host level path for guest drive
+    ***/
+    @serializationRequired
+	@serializationKeys("path_on_host") string pathOnHost;
 
 	/***
 	* Modify the drive via the Firecracker API
+    * Post-boot only
     * Throws: FirecrackerException
 	***/
 	bool patch(FirecrackerAPIClient cl) {
@@ -69,23 +88,5 @@ struct Drive {
 			return false;
 		}
 	}
-}
 
-/*** 
-* Used to update drive information after microvm start?
-***/
-struct PartialDrive {
-	mixin BaseModel;
-
-    /***
-    * Firecracker ID for drive
-    ***/
-    @serializationRequired
-	@serializationKeys("drive_id") string driveID;
-
-    /***
-    * Host level path for guest drive
-    ***/
-    @serializationRequired
-	@serializationKeys("path_on_host") string pathOnHost;
 }

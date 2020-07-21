@@ -63,4 +63,34 @@ struct MMDS {
 	}
 }
 
+/***
+* Defines the MMDS configuration.
+***/
+struct MMDSConfig {
+    mixin BaseModel;
+
+    /***
+    * IPv4 address that the MMDS is reachable through (on the VM side)
+    ***/
+    @serializationKeys("ipv4_address") string ipv4Address;
+
+	/***
+    * Apply MMDS config via the Firecracker API
+    * Pre-boot only
+	* Throws: FirecrackerException
+	***/
+	bool put(FirecrackerAPIClient cl) {
+		Response r = cl.put("/mmds/config", this.stringify);
+		if(r.code == 204) {
+			return true;
+		}
+		else {
+			throwFromResponse(r);
+			return false;
+		}
+	}
+}
+
+   
+    
 
