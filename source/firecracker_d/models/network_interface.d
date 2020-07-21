@@ -20,10 +20,11 @@ struct NetworkInterface {
 	*
 	* Example: tap0, eth0, etc.
 	***/
+    @serializationRequired 
 	@serializationKeys("host_dev_name") string hostDevName;
 
 	/***
-	* Required: the ID we want to use for this network interface
+	* Required: the Firecracker ID we want to use for this network interface
 	***/
     @serializationRequired
 	@serializationKeys("iface_id") string ifaceID;

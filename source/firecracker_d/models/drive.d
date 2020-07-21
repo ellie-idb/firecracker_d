@@ -39,9 +39,8 @@ struct Drive {
 	@serializationKeys("rate_limiter") RateLimiter rateLimiter; 
 
 	/***
-	  Create the drive via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Create the drive via the Firecracker API
+    * Throws: FirecrackerException
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/drives/" ~ driveID, this.stringify);
@@ -57,9 +56,8 @@ struct Drive {
 	}
 
 	/***
-	  Modify the drive via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Modify the drive via the Firecracker API
+    * Throws: FirecrackerException
 	***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.patch("/drives/" ~ driveID, this.stringify);
@@ -71,4 +69,23 @@ struct Drive {
 			return false;
 		}
 	}
+}
+
+/*** 
+* Used to update drive information after microvm start?
+***/
+struct PartialDrive {
+	mixin BaseModel;
+
+    /***
+    * Firecracker ID for drive
+    ***/
+    @serializationRequired
+	@serializationKeys("drive_id") string driveID;
+
+    /***
+    * Host level path for guest drive
+    ***/
+    @serializationRequired
+	@serializationKeys("path_on_host") string pathOnHost;
 }

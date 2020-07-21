@@ -10,16 +10,20 @@ struct BootSource {
 	***/
 	@serializationKeys("boot_args") string bootArgs;
 
+    /***
+    * Host level path to initrd image used to boot guest
+    ***/
+    @serializationKeys("initrd_path") string initrdPath;
+
 	/***
-	* Required: Path to kernel bzImage/vmlinux used to boot guest
+	* Host level path to kernel bzImage/vmlinux used to boot guest
 	***/
 	@serializationRequired 
     @serializationKeys("kernel_image_path") string kernelImagePath;
 
 	/***
-	  Create the boot source via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Create the boot source via the Firecracker API
+    * Throws: FirecrackerException
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/boot-source", this.stringify);

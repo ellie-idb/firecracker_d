@@ -12,9 +12,12 @@ struct InstanceInfo {
 		Uninitialized = "Uninitialized",
 		Starting = "Starting",
 		Running = "Running",
-		Halting = "Halting",
-		Halted = "Halted"
 	}
+
+    /***
+    * Application name (?)
+    ***/
+    @serializationKeys("app_name") string appName;
 
 	/***
 	* ID of our current microVM
@@ -25,6 +28,11 @@ struct InstanceInfo {
 	* State of our current microVM
 	***/
 	@serializationKeys("state") InstanceState state;
+
+    /***
+    * MicroVM hypervisor version
+    ***/
+    @serializationKeys("vmm_version") string vmmVersion;
 
 	/***
 	  Get the microVM's state via the Firecracker API

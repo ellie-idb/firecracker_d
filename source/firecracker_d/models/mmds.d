@@ -1,13 +1,11 @@
 module firecracker_d.models.mmds;
-// Expose std.json so you don't have to deal with importing it
 public import std.json;
+// std.json is exported for ease of use
 import firecracker_d.models.base_model;
 
 /***
-  MicroVM Data Store
-
-Note: requires `allow_mmds_requests == true` on the network interface to
-access.
+* MicroVM Data Store
+* Note: requires `allow_mmds_requests == true` on the network interface to access.
 ***/
 
 struct MMDS {
@@ -18,11 +16,9 @@ struct MMDS {
 	   
 	JSONValue content;
 
-
 	/***
-	   Create a new MMDS via the Firecracker API
-
-	   Throws a FirecrackerException if failed.
+    * Create a new MMDS via the Firecracker API
+	* Throws: FirecrackerException
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/mmds", content.toString);
@@ -37,9 +33,8 @@ struct MMDS {
 
 
 	/***
-	  Update the content of the MMDS via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Update the content of the MMDS via the Firecracker API
+	* Throws: FirecrackerException
 	***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.patch("/mmds", content.toString);
@@ -54,9 +49,8 @@ struct MMDS {
 
 
 	/***
-	  Get the MMDS via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Get the MMDS via the Firecracker API
+	* Throws: FirecrackerException
 	***/
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/mmds");
@@ -67,8 +61,6 @@ struct MMDS {
 			throwFromResponse(r);
 		}
 	}
-	
-
 }
 
 

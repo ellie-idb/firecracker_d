@@ -1,3 +1,8 @@
+/**
+ * Authors: Harrison Ford, harrison@0xcc.pw
+ * Date: July 21, 2020
+ */
+
 module firecracker_d.models.machine_configuration;
 import firecracker_d.models.cpu_template;
 import asdf;
@@ -14,22 +19,27 @@ struct MachineConfiguration {
 	/***
 	* Option to enable hyperthreading for the guest
 	***/
-	@serializationKeys("ht_enabled") bool htEnabled;
+	@serializationKeys("ht_enabled") @serializationRequired bool htEnabled;
 
 	/***
-	* Integer representing the guest's memory size in MiB
+	* Guest's memory size in MiB
 	***/
-	@serializationKeys("mem_size_mib") long memSizeMib;
+	@serializationKeys("mem_size_mib") @serializationRequired long memSizeMib;
+
+    /***
+    * Enable dirty page tracking
+    ***/
+    @serializationKeys("track_dirty_pages") @serializationRequired bool trackDirtyPages;
 
 	/***
-	* Integer representing the amount of vCPUs given to the guest
+	* Amount of vCPUs given to the guest
 	***/
-	@serializationKeys("vcpu_count") long vcpuCount;
+	@serializationKeys("vcpu_count") @serializationRequired long vcpuCount;
+
 
 	/***
-	  Modify the microVM's configuration via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Modify the microVM's configuration via the Firecracker API
+    * Throws: FirecrackerException
 	***/
 
 	bool put(FirecrackerAPIClient cl) {
@@ -45,9 +55,8 @@ struct MachineConfiguration {
 	}
 
 	/***
-	  Get the microVM's config via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Get the microVM's config via the Firecracker API
+	* Throws: FirecrackerException
 	***/
 
 	this(FirecrackerAPIClient cl) {
@@ -61,4 +70,9 @@ struct MachineConfiguration {
 		}
 	}
 
+    ///
+    invariant {
+        assert(vcpuCount < 32);
+        assert(vcpuCount > 0);
+    }
 }

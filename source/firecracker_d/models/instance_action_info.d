@@ -6,9 +6,7 @@ import asdf;
 * microVM.
 ***/
 enum InstanceActionInfoType : string {
-	BlockDeviceRescan = "BlockDeviceRescan",
 	InstanceStart = "InstanceStart",
-//	InstanceHalt = "InstanceHalt",
 	FlushMetrics = "FlushMetrics",
 	SendCtrlAltDel = "SendCtrlAltDel"
 }
@@ -23,20 +21,11 @@ struct InstanceActionInfo {
 	@serializationKeys("action_type") InstanceActionInfoType actionType;
 
 	/***
-	* Associated payload with the action
-	***/
-	@serializationKeys("payload") string payload;
-
-	/***
-	  Execute the action via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Execute the action via the Firecracker API
+    * Throws: FirecrackerException
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/actions", this.stringify);
-
-        import std.stdio : writeln;
-        writeln("put json: " ~ this.stringify);
 
 		if(r.code == 204) {
 			return true;

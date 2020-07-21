@@ -5,7 +5,6 @@ module firecracker_d.models.cpu_template;
 *   certain features on the MicroVM, primarily 
 *   used by AWS internally.
 ***/
-
 enum CPUTemplate : string {
 	Uninitialized = "Uninitialized",
 	C3 = "C3",

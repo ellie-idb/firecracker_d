@@ -25,22 +25,8 @@ struct Logger {
 	*
 	* Can be a named pipe, or the path to a file
 	***/
-	@serializationKeys("log_fifo") string logFifo;
+	@serializationKeys("log_path") string logPath;
 
-	/***
-	* Output location for the VM's metrics
-	*
-	* Can be a named pipe, or the path to a file
-	***/
-	@serializationKeys("metrics_fifo") string metricsFifo;
-
-	/***
-	* Extra options to pass to the logger
-	*
-	* Mostly undocumented..
-	***/
-	@serializationKeys("options") string[] options;
-	
 	/***
 	* Option to show the level of individual events in the
 	* log file.
