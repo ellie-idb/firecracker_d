@@ -7,7 +7,6 @@ import firecracker_d.models.base_model;
 * MicroVM Data Store
 * Note: requires `allow_mmds_requests == true` on the network interface to access.
 ***/
-
 struct MMDS {
 	/*
 	* There's no good way to handle this, so 
@@ -17,8 +16,8 @@ struct MMDS {
 	JSONValue content;
 
 	/***
-    * Create a new MMDS via the Firecracker API
-	* Throws: FirecrackerException
+    * Create a new MMDS via the Firecracker API. 
+	* Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/mmds", content.toString);
@@ -33,8 +32,8 @@ struct MMDS {
 
 
 	/***
-	* Update the content of the MMDS via the Firecracker API
-	* Throws: FirecrackerException
+	* Update the content of the MMDS via the Firecracker API. 
+	* Throws: FirecrackerException on error.
 	***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.patch("/mmds", content.toString);
@@ -49,8 +48,8 @@ struct MMDS {
 
 
 	/***
-	* Get the MMDS via the Firecracker API
-	* Throws: FirecrackerException
+	* Get the MMDS via the Firecracker API. 
+	* Throws: FirecrackerException on error.
 	***/
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/mmds");
@@ -75,9 +74,8 @@ struct MMDSConfig {
     @serializationKeys("ipv4_address") string ipv4Address;
 
 	/***
-    * Apply MMDS config via the Firecracker API
-    * Pre-boot only
-	* Throws: FirecrackerException
+    * Apply MMDS config via the Firecracker API (prior to boot).  
+	* Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/mmds/config", this.stringify);

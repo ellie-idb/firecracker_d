@@ -2,6 +2,9 @@ module firecracker_d.models.network_interface;
 import firecracker_d.models.base_model;
 import firecracker_d.models.rate_limiter;
 
+/***
+* Defines a network interface.
+***/
 struct NetworkInterface {
     mixin BaseModel;
 
@@ -40,8 +43,8 @@ struct NetworkInterface {
 	@serializationKeys("tx_rate_limiter") RateLimiter txRateLimiter;
 
 	/***
-	* Create the network interface via the Firecracker API
-    * Throws: FirecrackerException
+	* Create the network interface via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 
 	bool put(FirecrackerAPIClient cl) {
@@ -81,8 +84,8 @@ struct PartialNetworkInterface {
 	@serializationKeys("tx_rate_limiter") RateLimiter txRateLimiter;
 
     /***
-    * Update an existing network interface via the Firecracker API
-    * Throws: FirecrackerException
+    * Update an existing network interface via the Firecracker API. 
+    * Throws: FirecrackerException on error.
     ***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.put("/network-interfaces/" ~ id, this.stringify);

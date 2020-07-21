@@ -33,8 +33,8 @@ struct SnapshotCreateParams {
 
     /***
     * Creates a new snapshot.
-    * The microVM should be in the Paused state.
-    * Throws: FirecrackerException
+    * The microVM should be in the Paused state. 
+    * Throws: FirecrackerException on error.
     ***/
     bool put(FirecrackerAPIClient cl) {
         Response r = cl.put("/snapshot/create", this.stringify);
@@ -72,8 +72,8 @@ struct SnapshotLoadParams {
 
     /***
     * Loads a snapshot. Pre-boot only.
-    * Only accepted on a fresh Firecracker process (before configuring any resource other than the Logger and Metrics).
-    * Throws: FirecrackerException
+    * Only accepted on a fresh Firecracker process (before configuring any resource other than the Logger and Metrics). 
+    * Throws: FirecrackerException on error.
     ***/
     bool put(FirecrackerAPIClient cl) {
         Response r = cl.put("/snapshot/load", this.stringify);

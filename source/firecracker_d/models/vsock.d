@@ -33,8 +33,8 @@ struct Vsock {
     @serializationKeys("uds_path") string path;
 
 	/***
-	* Create the Vsock via the Firecracker API
-	* Throws: FirecrackerException
+	* Create the Vsock via the Firecracker API. 
+	* Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/vsocks/" ~ id, this.stringify);

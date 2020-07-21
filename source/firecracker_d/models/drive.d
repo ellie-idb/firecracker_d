@@ -39,8 +39,8 @@ struct Drive {
 	@serializationKeys("rate_limiter") RateLimiter rateLimiter; 
 
 	/***
-	* Create the drive via the Firecracker API
-    * Throws: FirecrackerException
+	* Create the drive via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/drives/" ~ driveID, this.stringify);

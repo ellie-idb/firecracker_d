@@ -35,9 +35,8 @@ struct InstanceInfo {
     @serializationKeys("vmm_version") string vmmVersion;
 
 	/***
-	  Get the microVM's state via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Get the microVM's state via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/");

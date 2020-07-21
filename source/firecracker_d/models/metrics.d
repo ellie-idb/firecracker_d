@@ -14,8 +14,8 @@ struct Metrics {
     @serializationKeys("metrics_path") @serializationRequired string metricsPath;
 
 	/***
-	* Create the metrics object via the Firecracker API
-    * Throws: FirecrackerException
+	* Create the metrics object via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/metrics", this.stringify);

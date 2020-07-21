@@ -22,8 +22,8 @@ struct BootSource {
     @serializationKeys("kernel_image_path") string kernelImagePath;
 
 	/***
-	* Create the boot source via the Firecracker API
-    * Throws: FirecrackerException
+	* Create the boot source via the Firecracker API 
+    * Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/boot-source", this.stringify);

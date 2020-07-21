@@ -21,8 +21,8 @@ struct InstanceActionInfo {
 	@serializationKeys("action_type") InstanceActionInfoType actionType;
 
 	/***
-	* Execute the action via the Firecracker API
-    * Throws: FirecrackerException
+	* Execute the action via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/actions", this.stringify);

@@ -1,4 +1,5 @@
 module firecracker_d.models.logger;
+import firecracker_d.models.base_model;
 import asdf;
 
 /***
@@ -10,7 +11,6 @@ enum LoggerLevel : string {
 		Info = "Info",
 		Debug = "Debug"
 }
-import firecracker_d.models.base_model;
 
 struct Logger {
 	mixin BaseModel;
@@ -40,11 +40,9 @@ struct Logger {
 	@serializationKeys("show_log_origin") bool showLogOrigin;
 
 	/***
-	  Create the logger via the Firecracker API
-
-	  Throws a FirecrackerException if failed.
+	* Create the logger via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
-
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/logger", this.stringify);
 		if(r.code == 204) {

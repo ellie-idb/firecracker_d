@@ -8,6 +8,9 @@ import firecracker_d.models.cpu_template;
 import asdf;
 import firecracker_d.models.base_model;
 
+/***
+* Describes the number of vCPUs, memory size, Hyperthreading capabilities and the CPU template.
+***/
 struct MachineConfiguration {
 	mixin BaseModel;
 
@@ -42,8 +45,8 @@ struct MachineConfiguration {
 
 
 	/***
-	* Modify the microVM's configuration via the Firecracker API
-    * Throws: FirecrackerException
+	* Modify the microVM's configuration via the Firecracker API. 
+    * Throws: FirecrackerException on error.
 	***/
 	bool put(FirecrackerAPIClient cl) {
 		Response r = cl.put("/machine-config", this.stringify);
@@ -58,8 +61,8 @@ struct MachineConfiguration {
 	}
 
     /***
-    * Partially updates the Machine Configuration of the VM. Pre-boot only.
-    * Throws: FirecrackerException
+    * Partially updates the Machine Configuration of the VM. Pre-boot only. 
+    * Throws: FirecrackerException on error.
     ***/
 	bool patch(FirecrackerAPIClient cl) {
 		Response r = cl.patch("/machine-config", this.stringify);
@@ -73,8 +76,8 @@ struct MachineConfiguration {
 	}
 
 	/***
-	* Get the microVM's config via the Firecracker API
-	* Throws: FirecrackerException
+	* Get the microVM's config via the Firecracker API. 
+	* Throws: FirecrackerException on error.
 	***/
 	this(FirecrackerAPIClient cl) {
 		Response r = cl.get("/machine-config");
